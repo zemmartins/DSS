@@ -37,7 +37,8 @@ public class Pilotos {
             throw new Exception("Piloto ja existente");
         }
         else{
-            pilotos.put(nome, new Piloto(CTS, SVA, available, nome));
+            Piloto p = new Piloto(CTS,SVA,available,nome);
+            pilotos.put(nome, p);
         }
     }
 }
