@@ -1,3 +1,5 @@
+package src;
+
 public interface Hibrido
 {
     public int getPotenciaMotorEletrico();

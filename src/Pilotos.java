@@ -1,3 +1,5 @@
+package src;
+
 import java.util.Map;
 import java.util.HashMap;
 
@@ -37,7 +39,7 @@ public class Pilotos {
             throw new Exception("Piloto ja existente");
         }
         else{
-            Piloto p = new Piloto(CTS,SVA,available,nome);
+            Piloto p = new Piloto(nome,available,CTS,SVA);
             pilotos.put(nome, p);
         }
     }

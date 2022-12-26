@@ -1,3 +1,5 @@
+package src;
+
 public class C1H extends C1 implements Hibrido
 {
     private int motor_eletrico;
@@ -8,10 +10,10 @@ public class C1H extends C1 implements Hibrido
        this.motor_eletrico = 0;
     }
     
-    public C1H(String marca, String modelo, int cilindrada, int potencia, int eletrico)
+    public C1H(int id,String marca, String modelo, float pac, float fiabilidade, int cilindrada, String pneus,int potencia,boolean hibrido)
     {
-        super(marca,modelo,cilindrada,potencia,eletrico);
-        this.motor_eletrico = eletrico;
+        super(id,marca,modelo,pac,fiabilidade,cilindrada,pneus,potencia,true);
+        this.motor_eletrico = 0;
     }
     
     public C1H(C1H p)

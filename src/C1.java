@@ -1,5 +1,4 @@
-import java.util.Map;
-import java.util.Random;
+package src;
 
 public class C1 extends Carro{
 
@@ -7,8 +6,8 @@ public class C1 extends Carro{
         super();
     }
 
-	public C1(String marca,String modelo,int afinacao,Float pac,Float fiabilidade,int cilindrada,String pneus,int eletrico){
-        super(marca, modelo, afinacao,pac,fiabilidade,cilindrada,pneus);
+	public C1(int id,String marca, String modelo, float pac, float fiabilidade, int cilindrada, String pneus,int potencia,boolean hibrido){
+        super(id,marca, modelo, pac, fiabilidade, cilindrada, pneus, potencia, hibrido);
     }
 
     public C1(C1 p){

@@ -1,44 +1,58 @@
+package src;
+
 public class Carro {
+    private int id;
     private String marca;
     private String modelo;
-    private int afinacao;
     private float pac;
     private float fiabilidade;
     private int cilindrada;
     private String pneus;
     private int potencia;
+    private boolean hibrido;
 
     public Carro(){
+        this.id = 0;
         this.marca = "";
         this.modelo = "";
-        this.afinacao = 0;
         this.pac = 0;
         this.fiabilidade = 0;
         this.cilindrada = 0;
         this.pneus = "";
         this.potencia = 0;
+        this.hibrido = false;
     }
 
-    public Carro(String marca, String modelo, int afinacao, float pac, float fiabilidade, int cilindrada, String pneus,int potencia){
+    public Carro(int id, String marca, String modelo, float pac, float fiabilidade, int cilindrada, String pneus,int potencia,boolean hibrido){
+        this.id = id;
         this.marca = marca;
         this.modelo = modelo;
-        this.afinacao = afinacao;
         this.pac = pac;
         this.fiabilidade = fiabilidade;
         this.cilindrada = cilindrada;
         this.pneus = pneus;
         this.potencia = potencia;
+        this.hibrido = hibrido;
     }
 
     public Carro(Carro c){
+        this.id = c.getID();
         this.marca = c.getMarca();
         this.modelo = c.getModelo();
-        this.afinacao = c.getAfinacao();
         this.pac = c.getPAC();
         this.fiabilidade = c.getFiabilidade();
         this.cilindrada = c.getCilindrada();
         this.pneus = c.getPneus();
         this.potencia = c.getPotencia();
+        this.hibrido = c.getHibrido();
+    }
+
+    public int getID(){
+        return id;
+    }
+
+    public void setID(int id){
+        this.id = id;
     }
 
     public String getMarca() {
@@ -55,14 +69,6 @@ public class Carro {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
-    }
-
-    public int getAfinacao() {
-        return afinacao;
-    }
-
-    public void setAfinacao(int afinacao) {
-        this.afinacao = afinacao;
     }
 
     public float getPAC() {
@@ -105,38 +111,40 @@ public class Carro {
         this.potencia = pot;
     }
 
+    public boolean getHibrido(){
+        return this.hibrido;
+    }
+
+    public void setHibirdo(boolean hibrido){
+        this.hibrido = hibrido;
+    }
+
     public float checkFia(){
         return this.fiabilidade;
     }
 
     public boolean checkC1(){
-        if (this.modelo == "C1")
-            return true;
-        else return false;
+        return this.modelo == "C1";
     }
 
     public boolean checkC2(){
-        if (this.modelo == "C2")
-            return true;
-        else return false;
+        return this.modelo == "C2";
     }
 
     public boolean checkGT(){
-        if (this.modelo == "GT")
-            return true;
-        else return false;
+        return this.modelo == "GT";
     }
 
     public boolean checkSC(){
-        if (this.modelo == "SC")
-            return true;
-        else return false;
+        return this.modelo == "SC";
     }
 
 
-    public checkFia95(){}
+    public boolean checkFia95(){
+        return (this.fiabilidade > 0.9 && this.fiabilidade <= 0.95);
+    }
 
-    public checkFia80(){}
-
-    //C1, C2, GT e SC vão ser extends??
+    public boolean checkFia80(){
+        return (this.fiabilidade > 0.75 && this.fiabilidade < 0.80);
+    }
 }

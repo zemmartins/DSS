@@ -1,4 +1,7 @@
+package src;
+
 public class Piloto {
+
     private float CTS;
     private float SVA;
     private boolean available;
@@ -11,7 +14,7 @@ public class Piloto {
         this.nome = "";
     }
 
-    public Piloto(float CTS, float SVA, boolean available, String nome){
+    public Piloto(String nome, boolean available,float CTS, float SVA){
         this.CTS = CTS;
         this.SVA = SVA;
         this.available = available;

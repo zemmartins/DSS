@@ -1,3 +1,4 @@
+package data;
 /*
  *  DISCLAIMER: Este código foi criado para discussão e edição durante as aulas práticas de DSS, representando
  *  uma solução em construção. Como tal, não deverá ser visto como uma solução canónica, ou mesmo acabada.
