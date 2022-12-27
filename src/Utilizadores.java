@@ -1,17 +1,21 @@
 package src;
 
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-public class Utilizadores {
-    private HashMap<String, Utilizador> users;
+import data.UtilizadoresDAO;
 
-    public Utilizadores(){
-        this.users = new HashMap<>();
+public class Utilizadores {
+    private Map<String, Utilizador> users;
+
+    public Utilizadores() throws SQLException{
+        this.users = UtilizadoresDAO.getInstance();
     }
 
     public boolean checkUsername(String nomeUtilizador){
-        return this.users.get(nomeUtilizador) != null;
+        return this.users.containsKey(nomeUtilizador);
     }
 
     public boolean checkPassword(String nomeUtilizador, String pass) throws Exception{

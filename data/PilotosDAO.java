@@ -74,7 +74,7 @@ public class PilotosDAO implements Map<String,Piloto> {
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
              ResultSet rs =
-                     stm.executeQuery("SELECT Id FROM pilotos WHERE Id='"+key.toString()+"'")) {
+                     stm.executeQuery("SELECT Id FROM pilotos WHERE NOME='"+key.toString()+"'")) {
             r = rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,7 +94,7 @@ public class PilotosDAO implements Map<String,Piloto> {
         Piloto p = null;
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT * FROM pilotos WHERE Id='"+key+"'")) {
+             ResultSet rs = stm.executeQuery("SELECT * FROM pilotos WHERE NOME='"+key+"'")) {
             if (rs.next()) {  // A chave existe na tabela
                 // Reconstruir a colecção de pilotos
                 p = new Piloto(rs.getString("NOME"),rs.getBoolean("AVAILABLE"),rs.getFloat("CTS"),rs.getFloat("SVA"));
@@ -148,8 +148,8 @@ public class PilotosDAO implements Map<String,Piloto> {
     @Override
     public void clear() {
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
-             Statement stm = conn.createStatement()) {
-            stm.executeUpdate("TRUNCATE pilotos");
+            Statement stm = conn.createStatement()) {
+                stm.executeUpdate("TRUNCATE pilotos");
         } catch (SQLException e) {
             // Database error!
             e.printStackTrace();

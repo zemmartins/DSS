@@ -54,7 +54,7 @@ public class CarrosDAO implements Map<String,Carro> {
         int i=0;
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT count(*) FROM carros")) {
+             ResultSet rs = stm.executeQuery("SELECT count(*) FROM carro")) {
             if(rs.next()) {
                 i = rs.getInt(1);
             }
@@ -68,42 +68,96 @@ public class CarrosDAO implements Map<String,Carro> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.size()==0;
     }
 
     @Override
     public boolean containsKey(Object key) {
-        return false;
+        boolean r;
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs =
+                     stm.executeQuery("SELECT Id FROM carro WHERE Id='"+key.toString()+"'")) {
+            r = rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return r;
     }
 
     @Override
     public boolean containsValue(Object value) {
-        return false;
+        Carro c = (Carro) value;
+        return this.containsKey(c.getMarca());
     }
 
     @Override
     public Carro get(Object key) {
-        return null;
+        Carro c = null;
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT * FROM carro WHERE Id='"+key+"'")) {
+            if (rs.next()) {  // A chave existe na tabela
+                // Reconstruir a colecção de carross
+                c = new Carro(rs.getInt("ID"),rs.getString("MARCA"),rs.getString("MODELO"),rs.getFloat("PAC"),rs.getFloat("FIABILIDADE"),rs.getInt("CILINDRADA"),rs.getString("PNEUS"),rs.getInt("POTENCIA"),rs.getBoolean("HIBRIDO"));
+            }
+        } catch (SQLException e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return c;
     }
 
     @Override
     public Carro put(String key, Carro value) {
-        return null;
+        Carro c = null;
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement()) {
+
+            stm.executeUpdate("INSERT INTO carro VALUES ('"+value.getID()+"', '"+value.getMarca()+"', '"+value.getModelo()+"','"+value.getPAC()+"','"+value.getFiabilidade()+"','"+value.getCilindrada()+"','"+value.getPneus()+"','"+value.getPotencia()+"','"+value.getHibrido()+"')");
+
+        } catch (SQLException e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return c;
     }
 
     @Override
     public Carro remove(Object key) {
-        return null;
+        Carro c = this.get(key);
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement()) {
+                stm.executeUpdate("DELETE FROM carro WHERE NOME='" + key + "'");
+    } catch (Exception e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return c;
     }
 
     @Override
+    //nao sei se esta certo pois marca não é um valor unico tipo id
     public void putAll(Map<? extends String, ? extends Carro> m) {
-
+        for(Carro c : m.values()) {
+            this.put(c.getMarca(), c);
+        }
     }
 
     @Override
     public void clear() {
-
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+            Statement stm = conn.createStatement()) {
+                stm.executeUpdate("TRUNCATE carro");
+        } catch (SQLException e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
     }
 
     @Override

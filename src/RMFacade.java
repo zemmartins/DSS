@@ -15,9 +15,15 @@ public class RMFacade {
 
     public Map<String, Piloto> pilotos;
     public Map<String, Carro> carros;
+    public Map<String, Circuito> circuitos;
+    public Utilizadores utilizadores; //Map<String,utilizadores>
 
     public RMFacade() throws SQLException {
         this.pilotos = PilotosDAO.getInstance();
-        this.carros = new HashMap<>();
+        this.carros = CarrosDAO.getInstance();
+        this.circuitos = CircuitosDAO.getInstance();
+        this.utilizadores = new Utilizadores();
     }
+
+
 }
