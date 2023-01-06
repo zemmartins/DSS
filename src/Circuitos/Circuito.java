@@ -1,4 +1,4 @@
-package src;
+package src.Circuitos;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -45,150 +45,6 @@ public class Circuito{
         this.mapId = c.mapId;
     }
 
-    class Curva{
-        private float gdu;
-        private float comprimento;
-        private int idCurvas;
-
-        public Curva(){
-            this.gdu = 0;
-            this.comprimento = 0;
-            this.idCurvas = 0;
-        }
-
-        public Curva(int idCurvas, float gdu,float comprimento){
-            this.gdu = gdu;
-            this.comprimento = comprimento;
-            this.idCurvas = idCurvas;
-        }
-
-        public Curva(Curva c){
-            this.gdu = c.gdu;
-            this.comprimento = c.comprimento;
-            this.idCurvas = c.idCurvas;
-        }
-
-        public void setGDU(float gdu){
-            this.gdu = gdu;
-        }
-
-        public float getGdu(){
-            return this.gdu;
-        }
-
-        public void setComprimento(float comprimento){
-            this.comprimento = comprimento;
-        }
-
-        public float getComprimeto(){
-            return this.comprimento;
-        }
-
-        public void setIdCurvas(int idCurvas){
-            this.idCurvas = idCurvas;
-        }
-
-        public int getIdCurvas(){
-            return this.idCurvas;
-        }
-    }
-
-    class Chicane{
-        private float gdu;
-        private float comprimento;
-        private int idChicanes;
-
-        public Chicane(){
-            this.gdu = 0;
-            this.comprimento = 0;
-            this.idChicanes = 0;
-        }
-
-        public Chicane(float gdu,float comprimento,int idChicanes){
-            this.gdu = gdu;
-            this.comprimento = comprimento;
-            this.idChicanes = idChicanes;
-        }
-
-        public Chicane(Chicane c){
-            this.gdu = c.gdu;
-            this.comprimento = c.comprimento;
-            this.idChicanes = c.idChicanes;
-        }
-
-        public void setGDU(float gdu){
-            this.gdu = gdu;
-        }
-
-        public float getGdu(){
-            return this.gdu;
-        }
-
-        public void setComprimento(float comprimento){
-            this.comprimento = comprimento;
-        }
-
-        public float getComprimeto(){
-            return this.comprimento;
-        }
-
-        public void setIdChicanes(int idChicanes){
-            this.idChicanes = idChicanes;
-        }
-
-        public int getIdChicanes(){
-            return this.idChicanes;
-        }
-    }
-
-    class Reta{
-        private float gdu;
-        private float comprimento;
-        private int idRetas;
-
-        public Reta(){
-            this.gdu = 0;
-            this.comprimento = 0;
-            this.idRetas = 0;
-        }
-
-        public Reta(float gdu,float comprimento,int idRetas){
-            this.gdu = gdu;
-            this.comprimento = comprimento;
-            this.idRetas = idRetas;
-        }
-
-        public Reta(Reta c){
-            this.gdu = c.gdu;
-            this.comprimento = c.comprimento;
-            this.idRetas = c.idRetas;
-        }
-
-        public void setGDU(float gdu){
-            this.gdu = gdu;
-        }
-
-        public float getGdu(){
-            return this.gdu;
-        }
-
-        public void setComprimento(float comprimento){
-            this.comprimento = comprimento;
-        }
-
-        public float getComprimeto(){
-            return this.comprimento;
-        }
-
-        public void setIdRetas(int idRetas){
-            this.idRetas = idRetas;
-        }
-
-        public int getIdRetas(){
-            return this.idRetas;
-        }
-    }
-
     public void setNome(String nome){
         this.nome = nome;
     }
@@ -228,7 +84,7 @@ public class Circuito{
 
     public void putCurva(float gdu,float comprimento){
         this.mapId +=1;
-        Curva aux = new Curva(gdu,comprimento,mapId);
+        Curva aux = new Curva(mapId,gdu,comprimento);
         this.curvas.put(mapId,aux);
     }
 
@@ -247,7 +103,7 @@ public class Circuito{
 
     public void putChicane(float gdu,float comprimento){
         this.mapId +=1;
-        Chicane aux = new Chicane(gdu,comprimento,mapId);
+        Chicane aux = new Chicane(mapId,gdu,comprimento);
         this.chicanes.put(mapId,aux);
     }
 
@@ -266,7 +122,7 @@ public class Circuito{
 
     public void putReta(float gdu,float comprimento){
         this.mapId +=1;
-        Reta aux = new Reta(gdu,comprimento,mapId);
+        Reta aux = new Reta(mapId,gdu,comprimento);
         this.retas.put(mapId,aux);
     }
 

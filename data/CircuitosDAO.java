@@ -13,11 +13,11 @@ import java.util.Iterator;
 
 import org.w3c.dom.views.AbstractView;
 
+import src.Circuitos.Circuito;
+
 import static java.util.stream.Collectors.toList;
 
 import static java.util.stream.Collectors.*;
-
-import src.Circuito;
 
 public class CircuitosDAO {
     private static CircuitosDAO singleton = null;

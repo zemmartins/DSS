@@ -1,4 +1,4 @@
-package src;
+package src.Utilizadores;
 
 public class Utilizador {
     private String nome_utilizador;

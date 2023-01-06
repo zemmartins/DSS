@@ -1,4 +1,4 @@
-package src;
+package src.Utilizadores;
 
 import java.sql.SQLException;
 import java.util.HashMap;

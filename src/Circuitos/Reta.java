@@ -1,4 +1,4 @@
-package src;
+package src.Circuitos;
 
 public class Reta{
         private float gdu;

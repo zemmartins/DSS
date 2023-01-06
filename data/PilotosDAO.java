@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.*;
 
 import src.IRMFacade;
-import src.Piloto;
+import src.Pilotos.Piloto;
 
 
 /**

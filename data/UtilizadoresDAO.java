@@ -1,6 +1,4 @@
 package data;
-import src.Utilizador;
-
 import java.sql.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,6 +9,9 @@ import java.util.TreeSet;
 import javax.rmi.CORBA.Util;
 
 import org.w3c.dom.views.AbstractView;
+
+import src.Utilizadores.Utilizador;
+
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.*;
 
