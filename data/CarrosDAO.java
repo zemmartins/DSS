@@ -36,6 +36,7 @@ public class CarrosDAO implements Map<String,Carro> {
                     "PNEUS VARCHAR(25) NOT NULL" +
                     "POTENCIA INT NOT NULL" +
                     "HIBRIDO BOOL NOT NULL)";
+            stm.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());

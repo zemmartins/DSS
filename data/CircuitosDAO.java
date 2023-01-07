@@ -19,35 +19,18 @@ import static java.util.stream.Collectors.toList;
 
 import static java.util.stream.Collectors.*;
 
-public class CircuitosDAO implements Map<String,Circuitos> {
+public class CircuitosDAO implements Map<String,Circuito> {
     private static CircuitosDAO singleton = null;
     
     private CircuitosDAO() throws SQLException{
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
             Statement stm = conn.createStatement()) {
-            String sql = "CREATE TABLE IF NOT EXISTS curvas (" +
-                    "ID INT(3) NOT NULL PRIMARY KEY," +
-                    "GDU INT(3) DEFAULT 0" +
-                    "DISTANCIA FLOAT(3) DEFAULT 0)";
-            stm.executeUpdate(sql);
-            sql = "CREATE TABLE IF NOT EXISTS chicanes (" +
-                    "ID INT(3) NOT NULL PRIMARY KEY," +
-                    "GDU INT(3) DEFAULT 0" +
-                    "DISTANCIA FLOAT(3) DEFAULT 0)";
-            stm.executeUpdate(sql);
-            sql = "CREATE TABLE IF NOT EXISTS retas (" +
-                    "ID INT(3) NOT NULL PRIMARY KEY," +
-                    "GDU INT(3) DEFAULT 0" +
-                    "DISTANCIA FLOAT(3) DEFAULT 0)";
-            stm.executeUpdate(sql);
-            sql = "CREATE TABLE IF NOT EXISTS circuitos (" +
-                    "NOME VARCHAR(25) NOT NULL PRIMARY KEY," +
-                    "DISTANCIA FLOAT(3) DEFAULT 0," +
-                    "VOLTAS INTEGER(2) DEFAULT 0, " +
-                    "foreign key(CURVAS) references curvas(Id), " +
-                    "foreign key(CHICANES) references chicanes(Id), " +
-                    "foreign key(RETAS) references retas(Id), " +
-                    "MAPID INT(3) DEFAULT 0)";
+            String sql = "CREATE TABLE IF NOT EXISTS circuitos (" +
+                  "NOME VARCHAR(25) NOT NULL PRIMARY KEY," +
+                  "DISTANCIA INTEGER(3) DEFAULT 0," +
+                  "VOLTAS INTEGER(2) DEFAULT 0, " +
+                  "ELEMENTOS VARCHAR(500), " +
+                  "MAPID INT(3) DEFAULT 0)";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,7 +96,7 @@ public class CircuitosDAO implements Map<String,Circuitos> {
              ResultSet rs = stm.executeQuery("SELECT * FROM circuitos WHERE NOME='"+key.toString()+"'")) {
             if (rs.next()) {  // A chave existe na tabela
                 // Reconstruir a colecção de pilotos
-                p = new Circuito(rs.getString("NOME"),rs.getFloat("DISTANCIA"),rs.getInt("VOLTAS"),);
+                p = new Circuito(rs.getString("NOME"),rs.getInt("DISTANCIA"),rs.getInt("VOLTAS"),rs.getInt("MAPID"));
             }
         } catch (SQLException e) {
             // Database error!
@@ -130,7 +113,7 @@ public class CircuitosDAO implements Map<String,Circuitos> {
              Statement stm = conn.createStatement()) {
 
             // Actualizar a turma
-            stm.executeUpdate("INSERT INTO circuitos VALUES ('"+value.getNome()+"', '"+value.getDistancia()+"', '"+value.getVoltas()+"','"+value.getSVA()+"')");
+            stm.executeUpdate("INSERT INTO circuitos VALUES ('"+value.getNome()+"', '"+value.getDistancia()+"', '"+value.getVoltas()+"','"+value.getMapID()+"')");
 
         } catch (SQLException e) {
             // Database error!

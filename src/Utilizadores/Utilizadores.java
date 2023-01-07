@@ -10,8 +10,13 @@ import data.UtilizadoresDAO;
 public class Utilizadores {
     private Map<String, Utilizador> users;
 
+
     public Utilizadores() throws SQLException{
         this.users = UtilizadoresDAO.getInstance();
+    }
+
+    public Utilizador geUtilizador(String name) {
+        return users.get(name);
     }
 
     public boolean checkUsername(String nomeUtilizador){
@@ -38,7 +43,7 @@ public class Utilizadores {
 
     public void regUser(String name, String pass, char tipo) throws Exception {
         if(!checkUsername(name)){
-            Utilizador u = new Utilizador(name, pass, tipo);
+            Utilizador u = new Utilizador(name, pass, tipo,null,null,null);
             this.users.put(name, u);
         }
         else{

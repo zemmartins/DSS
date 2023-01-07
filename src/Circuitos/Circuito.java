@@ -1,37 +1,31 @@
 package src.Circuitos;
 
 import java.util.Map;
-import java.util.stream.Collectors;
+//import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Collection;
+//import java.util.Collection;
 
 public class Circuito{
     private String nome;
-    private float distancia;
+    private int distancia;
     private int voltas;
-    private Map<Integer,Curva> curvas;
-    private Map<Integer,Chicane> chicanes;
-    private Map<Integer,Reta> retas;
+    private Map<Integer,Comprimento> comprimento;
     private int mapId;
 
     public Circuito(){
         this.nome = "";
         this.distancia = 0;
         this.voltas = 0;
-        this.curvas = new HashMap<Integer,Curva>();
-        this.chicanes = new HashMap<Integer,Chicane>();
-        this.retas = new HashMap<Integer,Reta>();
+        this.comprimento = new HashMap<Integer,Comprimento>();
         this.mapId = 0;
     }
 
-    public Circuito(String nome,float distancia,int voltas,Map<Integer,Curva> curvas,Map<Integer,Chicane> chicanes,Map<Integer,Reta> retas,int mapId){
+    public Circuito(String nome,int distancia,int voltas,/*String elementos,*/int mapId){
         this.nome = nome;
         this.distancia = distancia;
         this.voltas = voltas;
-        this.curvas = curvas;
-        this.chicanes = chicanes;
-        this.retas = retas;
+        /*this.comprimento = comprimento;*/
         this.mapId = mapId;
     }
 
@@ -39,9 +33,7 @@ public class Circuito{
         this.nome = c.nome;
         this.distancia = c.distancia;
         this.voltas = c.voltas;
-        this.curvas = c.curvas;
-        this.chicanes = c.chicanes;
-        this.retas = c.retas;
+        this.comprimento = c.comprimento;
         this.mapId = c.mapId;
     }
 
@@ -53,7 +45,7 @@ public class Circuito{
         return this.nome;
     }
 
-    public void setDistancia(float distancia){
+    public void setDistancia(int distancia){
         this.distancia = distancia;
     }
 
@@ -69,111 +61,146 @@ public class Circuito{
         return this.voltas;
     }
 
-    public void setCurvas(Map<Integer,Curva> curvas){
-        this.curvas = curvas; 
+    public void setComprimento(Map<Integer,Comprimento> comprimento){
+        this.comprimento = comprimento;
     }
 
-    public Map<Integer,Curva> getCurvas(){
-        return this.curvas;
+    public Map<Integer,Comprimento> getComprimento(){
+        return this.comprimento;
     }
 
-    public void putCurva(Curva nova){
-        this.mapId +=1;
-        this.curvas.put(mapId,nova);
+    public void setMapID(int mid){
+        this.mapId = mid;
     }
 
-    public void putCurva(float gdu,float comprimento){
-        this.mapId +=1;
-        Curva aux = new Curva(mapId,gdu,comprimento);
-        this.curvas.put(mapId,aux);
+    public int getMapID(){
+        return this.mapId;
     }
 
-    public void setChicanes(Map<Integer,Chicane> chicanes){
-        this.chicanes = chicanes;
+    public Map<Integer,Comprimento> comprimentoStringToMap(String elements){
+        int count = 0;
+        for(String e : elements.split(" ")){
+            for(String a : e.split(",")){
+                if()
+            }
+        }
+    }
+  
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    public ArrayList<Comprimento> showListChicanes() {
+        ArrayList<Comprimento> nova = new ArrayList<Comprimento>();
+        
+        for(Map.Entry<Integer, Comprimento> pair : this.comprimento.entrySet()){
+            if(pair.getValue().getTipo()==3){
+                nova.add(pair.getValue());
+
+            }
+        }
+        return nova;
     }
 
-    public Map<Integer,Chicane> getChicanes(){
-        return this.chicanes;
+    public ArrayList<Comprimento> showListStraight() {
+        ArrayList<Comprimento> nova = new ArrayList<Comprimento>();
+        
+        for(Map.Entry<Integer, Comprimento> pair : this.comprimento.entrySet()){
+            if(pair.getValue().getTipo()==1){
+                nova.add(pair.getValue());
+
+            }
+        }
+        return nova;
     }
 
-    public void putChicane(Chicane nova){
-        this.mapId +=1;
-        this.chicanes.put(mapId,nova);
-    }
+    public ArrayList<Comprimento> showListCurves() {
+        ArrayList<Comprimento> nova = new ArrayList<Comprimento>();
 
-    public void putChicane(float gdu,float comprimento){
-        this.mapId +=1;
-        Chicane aux = new Chicane(mapId,gdu,comprimento);
-        this.chicanes.put(mapId,aux);
-    }
+        for(Map.Entry<Integer, Comprimento> pair : this.comprimento.entrySet()){
+            if(pair.getValue().getTipo()==2){
+                nova.add(pair.getValue());
 
-    public void setRetas(Map<Integer,Reta> retas){
-        this.retas = retas;
-    }
-
-    public Map<Integer,Reta> getRetas(){
-        return this.retas;
-    }
-
-    public void putReta(Reta nova){
-        this.mapId +=1;
-        this.retas.put(mapId,nova);
-    }
-
-    public void putReta(float gdu,float comprimento){
-        this.mapId +=1;
-        Reta aux = new Reta(mapId,gdu,comprimento);
-        this.retas.put(mapId,aux);
-    }
-
-    public ArrayList<Chicane> showListChicanes() {
-        return new ArrayList<>(this.chicanes.values());
-    }
-
-    public ArrayList<Reta> showListStraight() {
-        return new ArrayList<>(this.retas.values());
-    }
-
-    public ArrayList<Curva> showListCurves() {
-        return new ArrayList<>(this.curvas.values());
+            }
+        }
+        return nova;
     }
 
     public float checkGDUreta(int idReta){
-        return this.retas.get(idReta).getGdu();
+        return this.comprimento.get(idReta).getGdu();
     }
 
     public float checkGDUcurva(int idCurva){
-        return this.curvas.get(idCurva).getGdu();
+        return this.comprimento.get(idCurva).getGdu();
     }
 
     public float checkGDUchicane(int idChicane){
-        return this.chicanes.get(idChicane).getGdu();
+        return this.comprimento.get(idChicane).getGdu();
     }
 
-    // regChicane(idCircuito : string, GDU : float, comprimento : float) : void
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
 
-    // egCurve(idCircuito : string, GDU : float, comprimento : float) : void
-
-    /*public int calcNumberStraight(Circuito c){
-        int cur = c.curvas.size();
-        int chi = c.chicanes.size();
-    }*/
-
-    //public int calcNumberStraight(){}
-
-    public float totalCurvas(){
-        float res = 0;
-        for(Map.Entry<Integer, Curva> pair : this.curvas.entrySet()){
-            res += pair.getValue().getComprimeto();
-        }
-        return res;
+    public void regChicane(String idCircuito ,float gdu){
+        Comprimento aux = new Comprimento(idCircuito,mapId,gdu,3);
+        this.comprimento.put(mapId,aux);
+        this.mapId +=1;
     }
 
-    public float totalChicanes(){
-        float res = 0;
-        for(Map.Entry<Integer, Chicane> pair : this.chicanes.entrySet()){
-            res += pair.getValue().getComprimeto();
+    public void regCurva(String idCircuito ,float gdu){
+        Comprimento aux = new Comprimento(idCircuito,mapId,gdu,2);
+        this.comprimento.put(mapId,aux);
+        this.mapId +=1;
+    }
+
+    public void regStraight(String idCircuito ,float gdu){
+        Comprimento aux = new Comprimento(idCircuito,mapId,gdu,1);
+        this.comprimento.put(mapId,aux);
+        this.mapId +=1;
+    }
+
+    public void putComprimento(Comprimento nova){
+        
+        this.comprimento.put(mapId,nova);
+        this.mapId +=1;
+    }
+
+    public int calcNumberStraight(Circuito c){
+        int cur = c.totalCurvas();
+        int chi = c.totalChicanes();
+
+        int comp = c.distancia - cur*100 - chi * 100;
+        return (comp/100);
+    }
+
+    public int calcNumberStraight(){
+        int cur = this.totalCurvas();
+        int chi = this.totalChicanes();
+
+        int comp = this.distancia - cur*100 - chi * 100;
+        return (comp/100);
+    }
+
+    public int totalCurvas(){
+        int r = 0;
+        for(Map.Entry<Integer, Comprimento> pair : this.comprimento.entrySet()){
+            if(pair.getValue().getTipo()==2)
+                r+=1;            
         }
-        return res;
+
+        return r;
+    }
+
+    public int totalChicanes(){
+        int r = 0;
+        for(Map.Entry<Integer, Comprimento> pair : this.comprimento.entrySet()){
+            if(pair.getValue().getTipo()==3)
+                r+=1;            
+        }
+
+        return r;
     }
 }

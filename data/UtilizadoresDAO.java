@@ -25,6 +25,7 @@ public class UtilizadoresDAO implements Map<String,Utilizador>{
                     "NOME_UTILIZADOR VARCHAR(25) NOT NULL PRIMARY KEY," +
                     "PASSWORD VARCHAR(25) NOT NULL," +
                     "TIPODEUSER CHAR NOT NULL)";
+            stm.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new NullPointerException(e.getMessage());

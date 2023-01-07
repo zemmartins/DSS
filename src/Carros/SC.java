@@ -17,6 +17,7 @@ public class SC extends Carro
         super(p);
     }
     
+    @Override
     public SC clone()
     {
         return new SC(this);
