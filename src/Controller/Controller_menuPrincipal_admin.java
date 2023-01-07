@@ -7,7 +7,7 @@ import src.UI.UI;
 public class Controller_menuPrincipal_admin {
     public static void run(RMFacade rm,Utilizador u ) throws Exception
     {
-        boolean exit = false;
+        //boolean exit = false;
         while (true)
         {
             int opcao = UI.menuPrincipal_admin(); 
@@ -23,7 +23,7 @@ public class Controller_menuPrincipal_admin {
                     UI.pressEnter();
                     break;
                 case 3 : 
-                    //Controlle
+                    Controller_CriaCampeonato.run(rm);
                     //Controller_CriaCarro.run(rm);
                     UI.pressEnter();
                     break;

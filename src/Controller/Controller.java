@@ -1,6 +1,6 @@
 package src.Controller;
 
-import java.sql.SQLException;
+//import java.sql.SQLException;
 
 import src.RMFacade;
 import src.UI.UI;
@@ -11,7 +11,7 @@ public class Controller {
     {
         RMFacade rmFacade = new RMFacade();
 
-        boolean exit = false;
+        //boolean exit = false;
         while (true)
         {
             int opcao = -1;

@@ -1,7 +1,12 @@
 package src;
 
-import java.util.Collection;
+import src.RMFacade;
+import src.Controller.Controller;
 
 public interface IRMFacade {
+
+    public static void main(String[] args) throws Exception {
+        Controller.run();
+    }
     
 }

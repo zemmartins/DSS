@@ -1,12 +1,13 @@
 package src;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.HashMap;
+// import java.util.Collection;
+// import java.util.HashSet;
+// import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Objects;
+// import java.util.Set;
+// import java.util.TreeSet;
 import java.sql.*;
 
 import data.*;
@@ -28,8 +29,8 @@ public class RMFacade {
     public RMFacade() throws SQLException {
         this.pilotos = PilotosDAO.getInstance();
         this.carros = CarrosDAO.getInstance();
-        //this.circuitos = CircuitosDAO.getInstance();
-        //this.campeonatos ) CampeonatosDAO.getInstance();
+        this.circuitos = CircuitosDAO.getInstance();
+        this.campeonatos =  CampeonatosDAO.getInstance();
         this.utilizadores = new Utilizadores();
     }
 
@@ -84,16 +85,26 @@ public class RMFacade {
     }
 
     public void addCampeonato(Campeonato c){
-        this.campeonatos.put(c.getNome(), c)
+        this.campeonatos.put(c.getNome(), c);
     }
 
     public void addCircuito(Circuito c){
-        this.circuitos.put(c.getNome(), c)
+        this.circuitos.put(c.getNome(), c);
     }
 
-    public void regCampeonatos(String nome,Map<String,Circuito> mapa){
-        Campeonato novo = new HashMap<String,Circuito>();
+    public Campeonato chooseChampionship(String cName){
+        return this.campeonatos.get(cName);
     }
+
+    public Carro chooseCar(String cName){
+        return this.carros.get(cName);
+    }
+
+    public Piloto choosePilot(String cName){
+        return this.pilotos.get(cName);
+    }
+
+    
 
 
 }

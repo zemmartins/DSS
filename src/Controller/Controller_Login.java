@@ -4,15 +4,15 @@ import src.RMFacade;
 import src.UI.UI;
 import src.Utilizadores.Utilizador;
 
-import java.sql.SQLException;
+//import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.text.Utilities;
+//import javax.swing.text.Utilities;
 
 public class Controller_Login {
     public static void run(RMFacade rm) throws Exception
     {
-        boolean exit = false;
+        //boolean exit = false;
         while (true)
         {
             ArrayList<String> opcao;

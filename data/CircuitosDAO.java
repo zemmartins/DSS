@@ -5,19 +5,19 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
-import java.util.Map.Entry;
-import java.util.HashMap;
-import java.util.Iterator;
+// import java.util.TreeSet;
+// import java.util.Map.Entry;
+// import java.util.HashMap;
+// import java.util.Iterator;
 
 
-import org.w3c.dom.views.AbstractView;
+// import org.w3c.dom.views.AbstractView;
 
 import src.Circuitos.Circuito;
 
-import static java.util.stream.Collectors.toList;
+// import static java.util.stream.Collectors.toList;
 
-import static java.util.stream.Collectors.*;
+// import static java.util.stream.Collectors.*;
 
 public class CircuitosDAO implements Map<String,Circuito> {
     private static CircuitosDAO singleton = null;
@@ -33,8 +33,7 @@ public class CircuitosDAO implements Map<String,Circuito> {
                   "MAPID INT(3) DEFAULT 0, " +
                   "NCURVAS INT(3) DEFAULT 0, " +
                   "NCHICANES INT(3) DEFAULT 0, " +
-                  "NRETAS INT(3) DEFAULT 0, " +
-                  ")";
+                  "NRETAS INT(3) DEFAULT 0)";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,7 +99,7 @@ public class CircuitosDAO implements Map<String,Circuito> {
              ResultSet rs = stm.executeQuery("SELECT * FROM circuitos WHERE NOME='"+key.toString()+"'")) {
             if (rs.next()) {  // A chave existe na tabela
                 // Reconstruir a colecção de pilotos
-                p = new Circuito(rs.getString("NOME"),rs.getInt("DISTANCIA"),rs.getInt("VOLTAS"),comprimentoStringToMap(rs.getString("ELEMENTOS")),rs.getInt("MAPID"),rs.getInt("NCURVAS"),rs.getInt("NCHICANES"),rs.getInt("NRETAS"));
+                p = new Circuito(rs.getString("NOME"),rs.getInt("DISTANCIA"),rs.getInt("VOLTAS"),rs.getString("ELEMENTOS"),rs.getInt("MAPID"),rs.getInt("NCURVAS"),rs.getInt("NCHICANES"),rs.getInt("NRETAS"));
             }
         } catch (SQLException e) {
             // Database error!

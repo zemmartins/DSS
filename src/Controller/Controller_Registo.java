@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Controller_Registo {
     public static void run(RMFacade rm) throws Exception
     {
-        boolean exit = false;
+        //boolean exit = false;
         while (true)
         {
             ArrayList<String> opcao;

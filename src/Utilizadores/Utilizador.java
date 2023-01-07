@@ -32,6 +32,15 @@ public class Utilizador {
         this.carro_selecionado = carro;
     }
 
+    public Utilizador(String nu, String pass, char tipo){
+        this.nome_utilizador = nu;
+        this.password = pass;
+        this.tipoDeUser = tipo;
+        this.campeonato_selecionado = new Campeonato();
+        this.piloto_selecionado = new Piloto();
+        this.carro_selecionado = new Carro();
+    }
+
     public Utilizador(Utilizador u){
         this.nome_utilizador = u.getNome_utilizador();
         this.password = u.getPassword();

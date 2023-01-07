@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import src.RMFacade;
 import src.Circuitos.Circuito;
+
+import data.CircuitosDAO;
 
 public class Campeonato{
     private String nome;
@@ -23,6 +26,41 @@ public class Campeonato{
     public Campeonato(String nome,HashMap<String,Circuito> circuitos){
         this.nome = nome;
         this.circuitos = circuitos;
+    }
+    
+
+    public Campeonato(String nome,String circuitosIDs,RMFacade rm){
+        this.nome = nome;
+        this.circuitos = circuitosIDtoMap(circuitosIDs,rm);
+    }
+
+    public Campeonato(String nome,String circuitosIDs){
+        this.nome = nome;
+        //this.circuitos = circuitosIDtoMap(circuitosIDs);
+    }
+
+    public String circuitosIDtoString(){
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        int size = this.circuitos.size();
+        for(String s : this.circuitos.keySet()){
+            if(count < size-1){
+                sb.append(s);
+                sb.append(" ");
+            }
+            else sb.append(s);
+        }
+        return sb.toString();
+    }
+
+    public Map<String,Circuito> circuitosIDtoMap(String circuitosIds,RMFacade rm){
+        Map<String,Circuito> r = new HashMap<>();
+        for(String id : circuitosIds.split(" ")){
+            Circuito c = rm.circuitos.get(id);
+            r.put(id, c);
+        }
+
+        return r;
     }
 
     public String getNome(){

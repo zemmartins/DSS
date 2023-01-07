@@ -1,37 +1,44 @@
 package src.Controller;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import src.RMFacade;
-import src.Carros.C1;
-import src.Carros.C2;
-import src.Carros.SC;
-import src.Carros.GT;
-import src.Carros.Carro;
+import src.Campeonatos.Campeonato;
+import src.Circuitos.Circuito;
 import src.UI.UI;
-import src.Utilizadores.Utilizador;
+// import src.Utilizadores.Utilizador;
+import java.util.Arrays;
+import java.util.HashMap;
 
-public class Controller_CriaCarro {
+
+public class Controller_CriaCampeonato {
     public static void run(RMFacade rm) throws Exception{
-        boolean exit = false;
-        Carro carro = new Carro();
-        Integer id = rm.carros.size()+1;
+        String option_1 = UI.menuCriaCampeonato();
 
-        while(!exit){ 
-            ArrayList<String> option = UI.menuCriaCarroAdmin();
-            if(Integer.parseInt(option.get(0))==1) {
-                C1 c1 = new C1(id,option.get(1),option.get(2),Float.parseFloat(option.get(3)),Float.parseFloat(option.get(4)),Integer.parseInt(option.get(5)),option.get(6),Integer.parseInt(option.get(7)),Boolean.parseBoolean(option.get(8)));
-            }
-            else if(Integer.parseInt(option.get(0))==2) {  
-                C2 c2 = new C2(id,option.get(1),option.get(2),Float.parseFloat(option.get(3)),Float.parseFloat(option.get(4)),Integer.parseInt(option.get(5)),option.get(6),Integer.parseInt(option.get(7),Boolean.parseBoolean(option.get(8))));;
-            } 
-            else if(Integer.parseInt(option.get(0))==3) {  
-                GT gt = new GT(id,option.get(1),option.get(2),Float.parseFloat(option.get(3)),Float.parseFloat(option.get(4)),Integer.parseInt(option.get(5)),option.get(6),Integer.parseInt(option.get(7)),Boolean.parseBoolean(option.get(8)));
-            } 
-            else if(Integer.parseInt(option.get(0))==4) {
-                SC c2 = new SC(id,option.get(1),option.get(2),Float.parseFloat(option.get(3)),Float.parseFloat(option.get(4)),Integer.parseInt(option.get(5)),option.get(6),Integer.parseInt(option.get(7)),false);
-            }
+
+        if(rm.checkNameCircuito(option_1)) {
+            System.out.println("Agora indique os circuitos que pretende adicionar ao seu campeonato(neste formato : x y z ...)");
+            System.out.println(rm.circuitos);
+            Scanner scanner = new Scanner(System.in);
+			String [] strsplit = scanner.nextLine().split("");
+
+			ArrayList<String> circuitos = new ArrayList<String>(Arrays.asList(strsplit));
+      
+     
+			HashMap<String, Circuito> circuitos_final = new HashMap<>();
+				
+			for (String str : circuitos) {
+     
+				circuitos_final.put(str, rm.circuitos.get(str));
+			}
+
+			Campeonato c = new Campeonato(option_1, circuitos_final);
+				
+			rm.campeonatos.put(option_1,c);
+            scanner.close();
         }
+        else System.out.println("Este nome ja esta ocupado");
     }      
 }
 

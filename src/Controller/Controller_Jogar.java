@@ -7,7 +7,7 @@ import src.Utilizadores.Utilizador;
 public class Controller_Jogar {
     public static void run(RMFacade rm,Utilizador u) throws Exception
     {
-        boolean exit = false;
+        //boolean exit = false;
         while (true)
         {
             int opcao = -1;

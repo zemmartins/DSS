@@ -4,16 +4,16 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
+// import java.util.TreeSet;
 
-import javax.rmi.CORBA.Util;
+//import javax.rmi.CORBA.Util;
 
-import org.w3c.dom.views.AbstractView;
+// import org.w3c.dom.views.AbstractView;
 
 import src.Utilizadores.Utilizador;
 
-import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.*;
+// import static java.util.stream.Collectors.toList;
+// import static java.util.stream.Collectors.*;
 
 public class UtilizadoresDAO implements Map<String,Utilizador>{
     private static UtilizadoresDAO singleton = null;
@@ -107,7 +107,7 @@ public class UtilizadoresDAO implements Map<String,Utilizador>{
              Statement stm = conn.createStatement()) {
 
             // Actualizar a turma
-            stm.executeUpdate("INSERT INTO utilizadores VALUES ('"+value.getNome_utilizador()+"', '"+value.getPassword()+"', '"+value.ge_()+"'");
+            stm.executeUpdate("INSERT INTO utilizadores VALUES ('"+value.getNome_utilizador()+"', '"+value.getPassword()+"', '"+value.getTipoDeUser()+"')");
 
         } catch (SQLException e) {
             // Database error!

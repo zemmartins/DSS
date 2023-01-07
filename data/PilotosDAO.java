@@ -5,15 +5,15 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
+// import java.util.TreeSet;
 
-import org.w3c.dom.views.AbstractView;
+// import org.w3c.dom.views.AbstractView;
 
-import static java.util.stream.Collectors.toList;
+// import static java.util.stream.Collectors.toList;
 
-import static java.util.stream.Collectors.*;
+// import static java.util.stream.Collectors.*;
 
-import src.IRMFacade;
+// import src.IRMFacade;
 import src.Pilotos.Piloto;
 
 
@@ -94,7 +94,7 @@ public class PilotosDAO implements Map<String,Piloto> {
         Piloto p = null;
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT * FROM pilotos WHERE NOME='"+key+"'")) {
+             ResultSet rs = stm.executeQuery("SELECT * FROM pilotos WHERE NOME='"+key.toString()+"'")) {
             if (rs.next()) {  // A chave existe na tabela
                 // Reconstruir a colecção de pilotos
                 p = new Piloto(rs.getString("NOME"),rs.getBoolean("AVAILABLE"),rs.getFloat("CTS"),rs.getFloat("SVA"));

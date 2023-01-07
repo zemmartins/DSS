@@ -1,8 +1,9 @@
 package src.Pilotos;
 
 import java.util.Map;
+import java.util.Objects;
 
-import src.Pilotos.Piloto;
+//import src.Pilotos.Piloto;
 
 import java.util.HashMap;
 
@@ -37,7 +38,7 @@ public class Pilotos {
         }
     }
 
-    public void validatePiloto(String pname){
+    public boolean validatePiloto(String pname){//pilotos nao podem ter nomes iguais
         boolean aux = true;
         for(Map.Entry<String, Piloto> pair : this.pilotos.entrySet()){
             if(Objects.equals(pair.getValue().getNome(),pname))

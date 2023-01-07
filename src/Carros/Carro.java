@@ -123,21 +123,7 @@ public class Carro {
         return this.fiabilidade;
     }
 
-    public boolean checkC1(){
-        return this.modelo == "C1";
-    }
 
-    public boolean checkC2(){
-        return this.modelo == "C2";
-    }
-
-    public boolean checkGT(){
-        return this.modelo == "GT";
-    }
-
-    public boolean checkSC(){
-        return this.modelo == "SC";
-    }
 
 
     public boolean checkFia95(){
@@ -147,4 +133,33 @@ public class Carro {
     public boolean checkFia80(){
         return (this.fiabilidade > 0.75 && this.fiabilidade < 0.80);
     }
+    /*
+    public void regCategory(String cat){
+        if(this.hibrido){
+            if(cat == "C1"){
+
+            }
+            if(cat == "C2"){
+            
+            }
+            if(cat == "GT"){
+            
+            }            
+        }
+        else{
+            if(cat == "SC"){
+            
+            }
+            if(cat == "C1"){
+
+            }
+            if(cat == "C2"){
+            
+            }
+            if(cat == "GT"){
+            
+            }  
+        }       
+    }*/
+
 }

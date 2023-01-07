@@ -1,26 +1,26 @@
 package src.Circuitos;
 
-public class Comprimento{
+public class Elemento{
         //private String circID;
-        private float gdu;
+        private int gdu;
         //private int id;
         private int tipo; // 1 para reta, 2 para curva, 3 para chicane
 
-        public Comprimento(){
+        public Elemento(){
             //this.circID = "";
             this.gdu = 0;
             //this.id = 0;
             this.tipo = 0;
         }
 
-        public Comprimento(/*String cID,int id,*/float gdu,int tipo){
+        public Elemento(/*String cID,int id,*/int gdu,int tipo){
             //this.circID = cID;
             this.gdu = gdu;
             //this.id = id;
             this.tipo = tipo;
         }
 
-        public Comprimento(Comprimento c){
+        public Elemento(Elemento c){
             //this.circID = c.getCircID();
             this.gdu = c.getGdu();
             //this.id = c.getId();
@@ -35,11 +35,11 @@ public class Comprimento{
             return this.circID;
         }*/
 
-        public void setGDU(float gdu){
+        public void setGDU(int gdu){
             this.gdu = gdu;
         }
 
-        public float getGdu(){
+        public int getGdu(){
             return this.gdu;
         }
 

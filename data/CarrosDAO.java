@@ -5,15 +5,15 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
+// import java.util.TreeSet;
 
-import org.w3c.dom.views.AbstractView;
+// import org.w3c.dom.views.AbstractView;
 
 import src.Carros.Carro;
 
-import static java.util.stream.Collectors.toList;
+// import static java.util.stream.Collectors.toList;
 
-import static java.util.stream.Collectors.*;
+// import static java.util.stream.Collectors.*;
 
 
 /**
@@ -30,11 +30,11 @@ public class CarrosDAO implements Map<String,Carro> {
                     "ID INT NOT NULL PRIMARY KEY," +
                     "MARCA VARCHAR(25) NOT NULL," +
                     "MODELO VARCHAR(25) NOT NULL," +
-                    "PAC FLOAT(3) NOT NULL" +
-                    "FIABILIDADE FLOAT(3) NOT NULL" +
-                    "CILINDRADA INT NOT NULL" +
-                    "PNEUS VARCHAR(25) NOT NULL" +
-                    "POTENCIA INT NOT NULL" +
+                    "PAC FLOAT(3) NOT NULL," +
+                    "FIABILIDADE FLOAT(3) NOT NULL," +
+                    "CILINDRADA INT NOT NULL," +
+                    "PNEUS VARCHAR(25) NOT NULL," +
+                    "POTENCIA INT NOT NULL," +
                     "HIBRIDO BOOL NOT NULL)";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
@@ -90,7 +90,8 @@ public class CarrosDAO implements Map<String,Carro> {
     @Override
     public boolean containsValue(Object value) {
         Carro c = (Carro) value;
-        return this.containsKey(c.getID());
+        String s = Integer.toString(c.getID());
+        return this.containsKey(s);
     }
 
     @Override
@@ -112,7 +113,7 @@ public class CarrosDAO implements Map<String,Carro> {
     }
 
     @Override
-    public Carro put(Object key, Carro value) {
+    public Carro put(String key, Carro value) {
         Carro c = null;
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()) {
@@ -143,9 +144,10 @@ public class CarrosDAO implements Map<String,Carro> {
 
     @Override
     //nao sei se esta certo pois marca não é um valor unico tipo id
-    public void putAll(Map<? extends Integer, ? extends Carro> m) {
+    public void putAll(Map<? extends String, ? extends Carro> m) {
         for(Carro c : m.values()) {
-            this.put(c.getID(), c);
+            String s = Integer.toString(c.getID()); 
+            this.put(s, c);
         }
     }
 
@@ -173,7 +175,7 @@ public class CarrosDAO implements Map<String,Carro> {
              Statement stm = conn.createStatement();
              ResultSet rs = stm.executeQuery("SELECT ID FROM carro")) { // ResultSet com os ids de todas as turmas
             while (rs.next()) {
-                String idp = rs.getInt("ID"); // Obtemos um id de turma do ResultSet
+                String idp = Integer.toString(rs.getInt("ID")); // Obtemos um id de turma do ResultSet
                 Carro p = this.get(idp);                    // Utilizamos o get para construir as turmas uma a uma
                 res.add(p);                                 // Adiciona a turma ao resultado.
             }
