@@ -21,11 +21,11 @@ public class Circuito{
         this.mapId = 0;
     }
 
-    public Circuito(String nome,int distancia,int voltas,/*String elementos,*/int mapId){
+    public Circuito(String nome,int distancia,int voltas,String elementos,int mapId){
         this.nome = nome;
         this.distancia = distancia;
         this.voltas = voltas;
-        /*this.comprimento = comprimento;*/
+        this.comprimento = comprimentoStringToMap(elementos);
         this.mapId = mapId;
     }
 
@@ -69,6 +69,10 @@ public class Circuito{
         return this.comprimento;
     }
 
+    public String getComprimentoString(){
+        StringBuilder sb = new StringBuilder();
+    }
+
     public void setMapID(int mid){
         this.mapId = mid;
     }
@@ -79,10 +83,21 @@ public class Circuito{
 
     public Map<Integer,Comprimento> comprimentoStringToMap(String elements){
         int count = 0;
+        Map<Integer,Comprimento> r = new HashMap<>();
         for(String e : elements.split(" ")){
+            int aux = 0;
+            float gdu;
+            int tipo;
             for(String a : e.split(",")){
-                if()
+                if(aux == 0){
+                    gdu = Float.parseFloat(a);
+                    aux++;
+                }
+                else tipo = Integer.parseInt(a);
             }
+
+            r.put(count, new Comprimento(gdu,tipo));
+            count++;
         }
     }
   
@@ -144,25 +159,22 @@ public class Circuito{
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
 
-    public void regChicane(String idCircuito ,float gdu){
-        Comprimento aux = new Comprimento(idCircuito,mapId,gdu,3);
-        this.comprimento.put(mapId,aux);
+    public void regChicane(  Comprimento aux = new Comprimento(gdu,3);
+        thrimento.put(mapId,aux);
         this.mapId +=1;
     }
 
-    public void regCurva(String idCircuito ,float gdu){
-        Comprimento aux = new Comprimento(idCircuito,mapId,gdu,2);
-        this.comprimento.put(mapId,aux);
+    public void regCurva(float gdu){
+        Comprmprimento(gdu,2);
+        this.comprimento.put(mapId,a.mapId +=1;
+    }
+
+    public void regStraight(float gdu){
+        Comprimento aux = new Comprimento(gdu,1);imento.put(mapId,aux);
         this.mapId +=1;
     }
 
-    public void regStraight(String idCircuito ,float gdu){
-        Comprimento aux = new Comprimento(idCircuito,mapId,gdu,1);
-        this.comprimento.put(mapId,aux);
-        this.mapId +=1;
-    }
-
-    public void putComprimento(Comprimento nova){
+utComprimento(Comprimento nova){
         
         this.comprimento.put(mapId,nova);
         this.mapId +=1;

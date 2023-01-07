@@ -16,24 +16,22 @@ public class Controller_CriaCarro {
         boolean exit = false;
         Carro carro = new Carro();
         Integer id = rm.carros.size()+1;
+
         while(!exit){ 
             ArrayList<String> option = UI.menuCriaCarroAdmin();
-            if(Integer.parseInt(option.get(0))==1) {  
-                C1 c1 = new C1(id, option.get(2), option.get(2), option.get(3), option.get(4), option.get(5), option.get(6), option.get(7), hibrido);
+            if(Integer.parseInt(option.get(0))==1) {
+                C1 c1 = new C1(id,option.get(1),option.get(2),Float.parseFloat(option.get(3)),Float.parseFloat(option.get(4)),Integer.parseInt(option.get(5)),option.get(6),Integer.parseInt(option.get(7)),Boolean.parseBoolean(option.get(8)));
             }
-            else if(option.get(0)==2) {  
-                C2 c2 = new C2(id, option.get(2), option.get(2), option.get(3), option.get(4), option.get(5), option.get(6), option.get(7), hibrido);
+            else if(Integer.parseInt(option.get(0))==2) {  
+                C2 c2 = new C2(id,option.get(1),option.get(2),Float.parseFloat(option.get(3)),Float.parseFloat(option.get(4)),Integer.parseInt(option.get(5)),option.get(6),Integer.parseInt(option.get(7),Boolean.parseBoolean(option.get(8))));;
             } 
-            else if(option.get(0)==3) {  
-                GT gt = new GT(id, option.get(2), option.get(2), option.get(3), option.get(4), option.get(5), option.get(6), option.get(7), hibrido);
+            else if(Integer.parseInt(option.get(0))==3) {  
+                GT gt = new GT(id,option.get(1),option.get(2),Float.parseFloat(option.get(3)),Float.parseFloat(option.get(4)),Integer.parseInt(option.get(5)),option.get(6),Integer.parseInt(option.get(7)),Boolean.parseBoolean(option.get(8)));
             } 
-            else if(option.get(0)==4) { 
-                option.get(1) ->  "String"
-                SC c2 = new SC(id,option.get(1),option.get(2), option.get(3), option.get(4), option.get(5), option.get(6), option.get(7), false);
-            } 
-                
+            else if(Integer.parseInt(option.get(0))==4) {
+                SC c2 = new SC(id,option.get(1),option.get(2),Float.parseFloat(option.get(3)),Float.parseFloat(option.get(4)),Integer.parseInt(option.get(5)),option.get(6),Integer.parseInt(option.get(7)),false);
+            }
         }
-    }
-            
+    }      
 }
 

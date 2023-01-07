@@ -63,5 +63,37 @@ public class RMFacade {
         }
     }
 
+    public boolean checkNomeCampeonato(String nome){
+        boolean aux = true;
+        for(Map.Entry<String, Campeonato> pair : this.campeonatos.entrySet()){
+            if(Objects.equals(nome,pair.getValue().getNome())) aux = false;         
+        }
+        return aux;
+    }
+
+    public boolean checkNameCircuito(String nome){
+        boolean aux = true;
+        for(Map.Entry<String, Circuito> pair : this.circuitos.entrySet()){
+            if(Objects.equals(nome,pair.getValue().getNome())) aux = false;         
+        }
+        return aux;
+    }
+
+    public void showListCurveStraight(Circuito c){
+        c.printCircuito();
+    }
+
+    public void addCampeonato(Campeonato c){
+        this.campeonatos.put(c.getNome(), c)
+    }
+
+    public void addCircuito(Circuito c){
+        this.circuitos.put(c.getNome(), c)
+    }
+
+    public void regCampeonatos(String nome,Map<String,Circuito> mapa){
+        Campeonato novo = new HashMap<String,Circuito>();
+    }
+
 
 }

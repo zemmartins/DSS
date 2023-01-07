@@ -59,4 +59,14 @@ public class Piloto {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+
+    public boolean validateCTS(){
+        if(this.getCTS()>=0 && this.getCTS()<=1) return true;
+        else return false;
+    }
+
+    public boolean validateSVA(){
+        if(this.getSVA()>=0 && this.getSVA()<=1) return true;
+        else return false;
+    }
 }

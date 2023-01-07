@@ -111,46 +111,189 @@ public class UI
         return sc.nextInt();
     }
 
-    public static ArrayList<Integer> menuCriaCarroAdmin() {
+    public static ArrayList<String> menuCriaCarroAdmin() {
         clearWindow();
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Integer> criaCarro_termos = new ArrayList<>();
+        ArrayList<String> criaCarro_termos = new ArrayList<>();
 
         System.out.println("-----------MENU CRIA CARRO-----------\n\n");
-        System.out.println("Introduza os dados a seguir pedidos.\n\n"); 
+        System.out.println("Introduza os dados a seguir pedidos.\n\n");
+
         System.out.println("Insira a classe do carro:\n(1) - C1\n(2) - C2\n(3) - GT\n(4) - SC\n");
-        int classe = scanner.nextInt();
+        String classe = scanner.nextLine();
         criaCarro_termos.add(classe);
+
         System.out.println("Insira a marca do carro:\n");
         String marca = scanner.nextLine();
         criaCarro_termos.add(marca);
+
         System.out.println("Insira o modelo do carro:\n");
-        int modelo = scanner.nextInt();
-        criaCarro_termos.add(classe);
+        String modelo = scanner.nextLine();
+        criaCarro_termos.add(modelo);
+
         System.out.println("Insira o PAC:\n");
+        String pac = scanner.nextLine();
+        criaCarro_termos.add(pac);
+
         System.out.println("Insira a fiabilidade:\n");
+        String fiabilidade = scanner.nextLine();
+        criaCarro_termos.add(fiabilidade);
+
         System.out.println("Insira a cilindrada:\n");
+        String cilindrada = scanner.nextLine();
+        criaCarro_termos.add(cilindrada);
+
         System.out.println("Insira a potência:\n");
+        String potencia = scanner.nextLine();
+        criaCarro_termos.add(potencia);
+
         System.out.println("Insira o tipo de pneus:\n");
-        System.out.println("hibrido");
+        String pneus = scanner.nextLine();
+        criaCarro_termos.add(pneus);
 
-        int classe = scanner.nextInt();
-        String marca = scanner.nextLine();
-        criaCarro_termos.add(classe);
-
+        System.out.println("O carro é híbrido?:\n");
+        String hibrido = scanner.nextLine();
+        criaCarro_termos.add(hibrido);
+        
         return criaCarro_termos;
     }
 
-    public static boolean isHibrido(){
+    public static ArrayList<String> menuCriaPilotoAdmin() {
+        clearWindow();
         Scanner scanner = new Scanner(System.in);
+        ArrayList<String> criaPiloto_termos = new ArrayList<>();
 
-        StringBuilder sb = new StringBuilder("");
-        sb.append("Introduza os dados a seguir pedidos.\n\n");
-        sb.append("Carro é híbrido? True/False.\n\n");
-        System.out.println(sb.toString());
-        Scanner sc = new Scanner(System.in);
-        return sc.nextBoolean(); //Maneira mais facil bro, caga nisto 
+        System.out.println("-----------MENU CRIA PILOTO-----------\n\n");
+        System.out.println("Introduza os dados a seguir pedidos.\n\n");
+
+        System.out.println("Insira o nome do piloto:\n");
+        String nome = scanner.nextLine();
+        criaCarro_termos.add(nome);
+
+        System.out.println("Introduza os níveis de perícia a seguir pedidos.\n\n");
+        System.out.println("Insira a marca do carro:\n");
+        String marca = scanner.nextLine();
+        criaCarro_termos.add(marca);
+
+        System.out.println("Insira o modelo do carro:\n");
+        String modelo = scanner.nextLine();
+        criaCarro_termos.add(modelo);
+
+        System.out.println("Insira o PAC:\n");
+        String pac = scanner.nextLine();
+        criaCarro_termos.add(pac);
+
+        System.out.println("Insira a fiabilidade:\n");
+        String fiabilidade = scanner.nextLine();
+        criaCarro_termos.add(fiabilidade);
+
+        System.out.println("Insira a cilindrada:\n");
+        String cilindrada = scanner.nextLine();
+        criaCarro_termos.add(cilindrada);
+
+        System.out.println("Insira a potência:\n");
+        String potencia = scanner.nextLine();
+        criaCarro_termos.add(potencia);
+
+        System.out.println("Insira o tipo de pneus:\n");
+        String pneus = scanner.nextLine();
+        criaCarro_termos.add(pneus);
+
+        System.out.println("O carro é híbrido?:\n");
+        String hibrido = scanner.nextLine();
+        criaCarro_termos.add(hibrido);
+        
+        return criaCarro_termos;
     }
+
+
+    // public static String getMarca(){
+    //     Scanner scanner = new Scanner(System.in);
+
+    //     StringBuilder sb = new StringBuilder("");
+    //     sb.append("Introduza os dados a seguir pedidos.\n\n");
+    //     sb.append("Digite a marca do carro: \n\n");
+    //     System.out.println(sb.toString());
+    //     Scanner sc = new Scanner(System.in);
+    //     return sc.nextLine();
+    // }
+
+    // public static String getModelo(){
+    //     Scanner scanner = new Scanner(System.in);
+
+    //     StringBuilder sb = new StringBuilder("");
+    //     sb.append("Introduza os dados a seguir pedidos.\n\n");
+    //     sb.append("Digite o modelo do carro: \n\n");
+    //     System.out.println(sb.toString());
+    //     Scanner sc = new Scanner(System.in);
+    //     return sc.nextLine();
+    // }
+
+    // public static float getPac(){
+    //     Scanner scanner = new Scanner(System.in);
+
+    //     StringBuilder sb = new StringBuilder("");
+    //     sb.append("Introduza os dados a seguir pedidos.\n\n");
+    //     sb.append("Digite o PAC do carro: \n\n");
+    //     System.out.println(sb.toString());
+    //     Scanner sc = new Scanner(System.in);
+    //     return sc.nextFloat();
+    // }
+
+    // public static float getFiabilidade(){
+    //     Scanner scanner = new Scanner(System.in);
+
+    //     StringBuilder sb = new StringBuilder("");
+    //     sb.append("Introduza os dados a seguir pedidos.\n\n");
+    //     sb.append("Digite a fiabilidade do carro: \n\n");
+    //     System.out.println(sb.toString());
+    //     Scanner sc = new Scanner(System.in);
+    //     return sc.nextFloat();
+    // }
+
+    // public static int getCilindrada(){
+    //     Scanner scanner = new Scanner(System.in);
+
+    //     StringBuilder sb = new StringBuilder("");
+    //     sb.append("Introduza os dados a seguir pedidos.\n\n");
+    //     sb.append("Digite a cilindrada do carro: \n\n");
+    //     System.out.println(sb.toString());
+    //     Scanner sc = new Scanner(System.in);
+    //     return sc.nextInt();
+    // }
+
+    // public static String getPneus(){
+    //     Scanner scanner = new Scanner(System.in);
+
+    //     StringBuilder sb = new StringBuilder("");
+    //     sb.append("Introduza os dados a seguir pedidos.\n\n");
+    //     sb.append("Digite o tipo de pneus do carro: \n\n");
+    //     System.out.println(sb.toString());
+    //     Scanner sc = new Scanner(System.in);
+    //     return sc.nextLine();
+    // }
+
+    // public static int getPotencia(){
+    //     Scanner scanner = new Scanner(System.in);
+
+    //     StringBuilder sb = new StringBuilder("");
+    //     sb.append("Introduza os dados a seguir pedidos.\n\n");
+    //     sb.append("Digite a potência do carro: \n\n");
+    //     System.out.println(sb.toString());
+    //     Scanner sc = new Scanner(System.in);
+    //     return sc.nextInt();
+    // }
+
+    // public static boolean isHibrido(){
+    //     Scanner scanner = new Scanner(System.in);
+
+    //     StringBuilder sb = new StringBuilder("");
+    //     sb.append("Introduza os dados a seguir pedidos.\n\n");
+    //     sb.append("Carro é híbrido? True/False.\n\n");
+    //     System.out.println(sb.toString());
+    //     Scanner sc = new Scanner(System.in);
+    //     return sc.nextBoolean();
+    // }
 
     public static String pressEnter()
     {

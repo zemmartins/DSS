@@ -21,10 +21,10 @@ public class UtilizadoresDAO implements Map<String,Utilizador>{
     private UtilizadoresDAO() throws SQLException{
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()) {
-            String sql = "CREATE TABLE IF NOT EXISTS utilizador (" +
+            String sql = "CREATE TABLE IF NOT EXISTS utilizadores (" +
                     "NOME_UTILIZADOR VARCHAR(25) NOT NULL PRIMARY KEY," +
                     "PASSWORD VARCHAR(25) NOT NULL," +
-                    "TIPODEUSER CHAR NOT NULL)";
+                    "TIPO_USER CHAR NOT NULL)";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class UtilizadoresDAO implements Map<String,Utilizador>{
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
              ResultSet rs =
-                     stm.executeQuery("SELECT Id FROM utilizadores WHERE NOME_UTILIZADOR='"+key.toString()+"'")) {
+                     stm.executeQuery("SELECT NOME_UTILIZADOR FROM utilizadores WHERE NOME_UTILIZADOR='"+key.toString()+"'")) {
             r = rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,7 +87,7 @@ public class UtilizadoresDAO implements Map<String,Utilizador>{
         Utilizador u = null;
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT * FROM utilizadores WHERE NOME_UTILIZADOR='"+key+"'")) {
+             ResultSet rs = stm.executeQuery("SELECT * FROM utilizadores WHERE NOME_UTILIZADOR='"+key.toString()+"'")) {
             if (rs.next()) {  // A chave existe na tabela
                 // Reconstruir a colecção de pilotos
                 u = new Utilizador(rs.getString("NOME_UTILIZADOR"),rs.getString("PASSWORD"),rs.getString("TIPO_USER").charAt(0));
@@ -107,7 +107,7 @@ public class UtilizadoresDAO implements Map<String,Utilizador>{
              Statement stm = conn.createStatement()) {
 
             // Actualizar a turma
-            stm.executeUpdate("INSERT INTO utilizadores VALUES ('"+value.getNome_utilizador()+"', '"+value.getPassword()+"', '"+value.getTipoDeUser()+"'");
+            stm.executeUpdate("INSERT INTO utilizadores VALUES ('"+value.getNome_utilizador()+"', '"+value.getPassword()+"', '"+value.ge_()+"'");
 
         } catch (SQLException e) {
             // Database error!
@@ -119,10 +119,10 @@ public class UtilizadoresDAO implements Map<String,Utilizador>{
 
     @Override
     public Utilizador remove(Object key) {
-        Utilizador u = this.get(key);
+        Utilizador u = this.get(key.toString());
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()) {
-                stm.executeUpdate("DELETE FROM utilizadores WHERE NOME_UTILIZADOR='" + key + "'");
+                stm.executeUpdate("DELETE FROM utilizadores WHERE NOME_UTILIZADOR='" + key.toString() + "'");
     } catch (Exception e) {
             // Database error!
             e.printStackTrace();

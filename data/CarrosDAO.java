@@ -78,7 +78,7 @@ public class CarrosDAO implements Map<String,Carro> {
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
              ResultSet rs =
-                     stm.executeQuery("SELECT Id FROM carro WHERE Id='"+key.toString()+"'")) {
+                     stm.executeQuery("SELECT ID FROM carro WHERE ID='"+key.toString()+"'")) {
             r = rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class CarrosDAO implements Map<String,Carro> {
     @Override
     public boolean containsValue(Object value) {
         Carro c = (Carro) value;
-        return this.containsKey(c.getMarca());
+        return this.containsKey(c.getID());
     }
 
     @Override
@@ -98,7 +98,7 @@ public class CarrosDAO implements Map<String,Carro> {
         Carro c = null;
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT * FROM carro WHERE Id='"+key+"'")) {
+             ResultSet rs = stm.executeQuery("SELECT * FROM carro WHERE ID='"+key.toString()+"'")) {
             if (rs.next()) {  // A chave existe na tabela
                 // Reconstruir a colecção de carross
                 c = new Carro(rs.getInt("ID"),rs.getString("MARCA"),rs.getString("MODELO"),rs.getFloat("PAC"),rs.getFloat("FIABILIDADE"),rs.getInt("CILINDRADA"),rs.getString("PNEUS"),rs.getInt("POTENCIA"),rs.getBoolean("HIBRIDO"));
@@ -112,7 +112,7 @@ public class CarrosDAO implements Map<String,Carro> {
     }
 
     @Override
-    public Carro put(String key, Carro value) {
+    public Carro put(Object key, Carro value) {
         Carro c = null;
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()) {
@@ -129,10 +129,10 @@ public class CarrosDAO implements Map<String,Carro> {
 
     @Override
     public Carro remove(Object key) {
-        Carro c = this.get(key);
+        Carro c = this.get(key.toString());
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()) {
-                stm.executeUpdate("DELETE FROM carro WHERE NOME='" + key + "'");
+                stm.executeUpdate("DELETE FROM carro WHERE ID='" + key.toString() + "'");
     } catch (Exception e) {
             // Database error!
             e.printStackTrace();
@@ -143,9 +143,9 @@ public class CarrosDAO implements Map<String,Carro> {
 
     @Override
     //nao sei se esta certo pois marca não é um valor unico tipo id
-    public void putAll(Map<? extends String, ? extends Carro> m) {
+    public void putAll(Map<? extends Integer, ? extends Carro> m) {
         for(Carro c : m.values()) {
-            this.put(c.getMarca(), c);
+            this.put(c.getID(), c);
         }
     }
 
@@ -168,7 +168,21 @@ public class CarrosDAO implements Map<String,Carro> {
 
     @Override
     public Collection<Carro> values() {
-        return null;
+        Collection<Carro> res = new HashSet<>();
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT ID FROM carro")) { // ResultSet com os ids de todas as turmas
+            while (rs.next()) {
+                String idp = rs.getInt("ID"); // Obtemos um id de turma do ResultSet
+                Carro p = this.get(idp);                    // Utilizamos o get para construir as turmas uma a uma
+                res.add(p);                                 // Adiciona a turma ao resultado.
+            }
+        } catch (Exception e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
     }
 
     @Override

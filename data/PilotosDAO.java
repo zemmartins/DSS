@@ -74,7 +74,7 @@ public class PilotosDAO implements Map<String,Piloto> {
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
              ResultSet rs =
-                     stm.executeQuery("SELECT Id FROM pilotos WHERE NOME='"+key.toString()+"'")) {
+                     stm.executeQuery("SELECT NOME FROM pilotos WHERE NOME='"+key.toString()+"'")) {
             r = rs.next();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -51,7 +51,7 @@ public class Campeonato{
 
     //public boolean checkNomeCampeonato(String nome){} // função é fora do campeonato
 
-    public void placeCampeonato(Circuito c){
+    public void placeCircuito(Circuito c){
         String n = c.getNome();
         this.circuitos.put(n, c);
     }

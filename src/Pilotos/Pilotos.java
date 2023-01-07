@@ -10,7 +10,7 @@ public class Pilotos {
     private Map<String, Piloto> pilotos;
 
     public Pilotos(){
-        this.pilotos = new HashMap<>();
+        this.pilotos = new HashMap<String, Piloto>();
     }
 
     public Pilotos(HashMap<String, Piloto> p){
@@ -35,6 +35,15 @@ public class Pilotos {
         else{
             throw new Exception("Piloto Inexistente");
         }
+    }
+
+    public void validatePiloto(String pname){
+        boolean aux = true;
+        for(Map.Entry<String, Piloto> pair : this.pilotos.entrySet()){
+            if(Objects.equals(pair.getValue().getNome(),pname))
+                aux = false;      
+        }
+        return aux;
     }
 
     public void addPilot(float CTS, float SVA, boolean available, String nome) throws Exception{

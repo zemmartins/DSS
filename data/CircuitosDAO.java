@@ -30,7 +30,11 @@ public class CircuitosDAO implements Map<String,Circuito> {
                   "DISTANCIA INTEGER(3) DEFAULT 0," +
                   "VOLTAS INTEGER(2) DEFAULT 0, " +
                   "ELEMENTOS VARCHAR(500), " +
-                  "MAPID INT(3) DEFAULT 0)";
+                  "MAPID INT(3) DEFAULT 0, " +
+                  "NCURVAS INT(3) DEFAULT 0, " +
+                  "NCHICANES INT(3) DEFAULT 0, " +
+                  "NRETAS INT(3) DEFAULT 0, " +
+                  ")";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -73,7 +77,7 @@ public class CircuitosDAO implements Map<String,Circuito> {
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
              ResultSet rs =
-                     stm.executeQuery("SELECT Id FROM circuitos WHERE NOME='"+key.toString()+"'")) {
+                     stm.executeQuery("SELECT NOME FROM circuitos WHERE NOME='"+key.toString()+"'")) {
             r = rs.next();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,7 +100,7 @@ public class CircuitosDAO implements Map<String,Circuito> {
              ResultSet rs = stm.executeQuery("SELECT * FROM circuitos WHERE NOME='"+key.toString()+"'")) {
             if (rs.next()) {  // A chave existe na tabela
                 // Reconstruir a colecção de pilotos
-                p = new Circuito(rs.getString("NOME"),rs.getInt("DISTANCIA"),rs.getInt("VOLTAS"),rs.getInt("MAPID"));
+                p = new Circuito(rs.getString("NOME"),rs.getInt("DISTANCIA"),rs.getInt("VOLTAS"),comprimentoStringToMap(rs.getString("ELEMENTOS")),rs.getInt("MAPID"),rs.getInt("NCURVAS"),rs.getInt("NCHICANES"),rs.getInt("NRETAS"));
             }
         } catch (SQLException e) {
             // Database error!
@@ -113,7 +117,7 @@ public class CircuitosDAO implements Map<String,Circuito> {
              Statement stm = conn.createStatement()) {
 
             // Actualizar a turma
-            stm.executeUpdate("INSERT INTO circuitos VALUES ('"+value.getNome()+"', '"+value.getDistancia()+"', '"+value.getVoltas()+"','"+value.getMapID()+"')");
+            stm.executeUpdate("INSERT INTO circuitos VALUES ('"+value.getNome()+"', '"+value.getDistancia()+"', '"+value.getVoltas()+"', '"+value.getComprimentoString()+"', '"+value.getMapID()+"', '"+value.getNCurvas()+"', '"+value.getNChicanes()+"', '"+value.getNRetas()+"')");
 
         } catch (SQLException e) {
             // Database error!

@@ -24,7 +24,7 @@ public class Controller_Jogar {
                     }
                     case 2:
                     {
-                        //TODO:
+                        Controller_Escolher_Campeonato.run(rm, u);
                         UI.pressEnter();
                         break;
                     }
