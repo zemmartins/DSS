@@ -19,7 +19,7 @@ import static java.util.stream.Collectors.toList;
 
 import static java.util.stream.Collectors.*;
 
-public class CircuitosDAO {
+public class CircuitosDAO implements Map<String,Circuitos> {
     private static CircuitosDAO singleton = null;
     
     private CircuitosDAO() throws SQLException{

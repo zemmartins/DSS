@@ -3,13 +3,15 @@ package src.Controller;
 import src.RMFacade;
 import src.UI.UI;
 
+import java.util.ArrayList;
+
 public class Controller_Login {
     public static void run(RMFacade rmFacade)
     {
         boolean exit = false;
         while (true)
         {
-            int opcao = -1;
+            ArrayList<String> opcao = -1;
             while (opcao < 0 || opcao > 6)
             {
                 opcao = UI.menuLogin(); 
