@@ -18,7 +18,6 @@ public class UI
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
 
-        sc.close();
         return sc.nextInt();
     }
 
@@ -58,7 +57,6 @@ public class UI
         sb.append("\tSelecione a opção pretendida: ");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
-        sc.close();
         return sc.nextInt();
     }
 
@@ -72,7 +70,6 @@ public class UI
         sb.append("\tSelecione a opção pretendida: ");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
-        sc.close();
         return sc.nextInt();
     }
 
@@ -81,7 +78,7 @@ public class UI
         //Lista dos carros
         System.out.println("\tSelecione a opção pretendida: ");
         Scanner sc = new Scanner(System.in);
-        sc.close();
+
         return sc.nextInt();
     }
 
@@ -90,7 +87,6 @@ public class UI
         //Lista dos campeonatos
         System.out.println("\tSelecione a opção pretendida: ");
         Scanner sc = new Scanner(System.in);
-        sc.close();
         return sc.nextInt();
     }
 
@@ -99,7 +95,6 @@ public class UI
         //Lista dos pilotos
         System.out.println("\tSelecione a opção pretendida: ");
         Scanner sc = new Scanner(System.in);
-        sc.close();
         return sc.nextInt();
     }
 
@@ -115,7 +110,6 @@ public class UI
         sb.append("\tSelecione a opção pretendida: ");
         System.out.println(sb.toString());
         Scanner sc = new Scanner(System.in);
-        sc.close();
         return sc.nextInt();
     }
 
@@ -162,8 +156,6 @@ public class UI
         System.out.println("O carro é híbrido?:\n");
         String hibrido = scanner.nextLine();
         criaCarro_termos.add(hibrido);
-
-        scanner.close();
         
         return criaCarro_termos;
     }
@@ -189,8 +181,6 @@ public class UI
         System.out.println("Insira o nível de SVA do piloto:\n");
         String sva = scanner.nextLine();
         criaPiloto_termos.add(sva);
-
-        scanner.close();
         
         return criaPiloto_termos;
     }
@@ -228,8 +218,6 @@ public class UI
         String voltas = scanner.nextLine();
         criaCircuito_termos.add(voltas);
 
-        scanner.close();
-
         return criaCircuito_termos;
     }
 
@@ -243,8 +231,6 @@ public class UI
         System.out.println("Indique o nome do seu campeonato");
 
         String r = scanner.nextLine();
-        scanner.close();
-        
         return r;
     }
 
@@ -253,8 +239,6 @@ public class UI
         System.out.println("Pressione qualquer tecla para continuar...");
         Scanner scanner = new Scanner(System.in);
         String r = scanner.nextLine();
-
-        scanner.close();
 
         return r;
     }
